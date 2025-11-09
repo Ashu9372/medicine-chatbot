@@ -1,22 +1,15 @@
 import pandas as pd
-import os
-# --- NEW IMPORT FOR FUZZY MATCHING ---
 from fuzzywuzzy import fuzz, process
 
-# --- CRITICAL SAFETY DISCLAIMER ---
-print("")
 print("⚠ DISCLAIMER: This is an AI lookup tool for general info.")
 print("ALWAYS consult a qualified doctor or pharmacist before using medicine.")
-print("")
 
-# 1. Load the database (data.csv) using a robust method
 def load_data_robust(filename='data.csv'):
     """Tries to load the CSV file using several common methods and encodings."""
     
     # 1. Try simple file name with common encodings
     for encoding in ['utf8', 'latin1', 'cp1252']:
         try:
-            # We use the simple, relative path since the command prompt is in the right folder.
             data = pd.read_csv('data.csv', encoding=encoding)
             print(f"✅ Data loaded successfully using '{encoding}' encoding!")
             return data
@@ -26,7 +19,6 @@ def load_data_robust(filename='data.csv'):
             # If the file is not found by the simple name, continue to next block
             break
         except Exception as e:
-            # Handle other pandas reading errors
             continue
 
     # 2. Try searching for the file using its full absolute path (forward slashes)
@@ -46,12 +38,6 @@ def load_data_robust(filename='data.csv'):
     print("------------------------------------------------------------")
     exit()
 
-# Load the data using the robust function
-data = load_data_robust()
-
-# Create a lowercase column for easy, non-case-sensitive searching
-data['Name_Lower'] = data['Name'].str.lower() 
-
 def get_medicine_info(query, data, data_lower, threshold_strict=45, threshold_partial=40):
     """Searches the database, using fuzzy matching to find the closest medicine name."""
 
@@ -69,20 +55,15 @@ def get_medicine_info(query, data, data_lower, threshold_strict=45, threshold_pa
         score_cutoff=80
     )
     
-    # Check if a good match was found
     if not best_match:
         return f"I could not find information for '{query}'. Please check the spelling or try a partial name."
 
-    # The best match is the name from the database that scored highest
     matched_name_lower = best_match[0]
     
-    # --- 2. Retrieve Data using the Best Match ---
     result = data[data_lower == matched_name_lower]
 
-    # Match found! Get the data from the first matching row
     info = result.iloc[0]
         
-    # 3. Format the response (Keys must match your spreadsheet)
     response = (
         f"\n✅ Found Match: *{info['Name']}*\n"
         f"--- \n"
@@ -95,12 +76,10 @@ def get_medicine_info(query, data, data_lower, threshold_strict=45, threshold_pa
 
 # --- Main Chatbot Interaction Loop ---
 if __name__ == "__main__":
-    # 1. Load data and setup (THIS WAS MISSING)
+    # 1. Load data and setup
     data = load_data_robust() 
-    # Assuming you also need this line for fuzzy matching:
     data_lower = data['Name'].str.lower()
 
-    # 2. Start interaction loop
     print("\u26A0 Hello! What medicine would you like to know about? (Type 'exit' to quit)")
 
     while True:
@@ -111,5 +90,5 @@ if __name__ == "__main__":
             break
         
         if user_input:
-            response_text = get_medicine_info(user_input, data, data_lower) # Make sure 'data' is passed if needed
+            response_text = get_medicine_info(user_input, data, data_lower)
             print(f"Chatbot: {response_text}")
