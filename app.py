@@ -116,6 +116,7 @@ if user_input:
     with st.spinner(f"Searching for '{user_input}'..."):
         # Call the lookup function
         details, name_found = lookup_medicine(user_input)
+submitted = s.t form_submit_button
 
     # Display Results
     if details:
