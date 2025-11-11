@@ -12,10 +12,10 @@ st.info("⚠ ALWAYS consult a qualified doctor or pharmacist before using medici
 
 # --- 3. SEARCH FORM ---
 with st.form(key='medicine_search_form'):
-    
     user_input = st.text_input(
-        "What medicine would you like to know about?", 
-        placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc."
+        "What medicine would you like to know about?")
+    
+      placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc."
     )
     
     # The submit button should be inside the form
@@ -28,8 +28,9 @@ if submitted and user_input:
     
     # Call the lookup function, showing a spinner while waiting
     with st.spinner(f"Searching for '{user_input}'..."):
+            user_input = st.text_input(
+        "What medicine would you like to know about?")
         details, name_found = lookup_medicine(user_input)
-
     
     if details:
         
