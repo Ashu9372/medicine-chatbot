@@ -15,7 +15,7 @@ with st.form(key='medicine_search_form'):
     user_input = st.text_input(
         "What medicine would you like to know about?")
     
-      placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc."
+placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc."
     )
     
     # The submit button should be inside the form
