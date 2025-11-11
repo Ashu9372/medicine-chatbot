@@ -28,7 +28,7 @@ if submitted and user_input:
     
     # Call the lookup function, showing a spinner while waiting
     with st.spinner(f"Searching for '{user_input}'..."):
-        details, name_found = lookup_medicine(user_input)
+        details, name_found = lookup_medicine (user_input)
 
     
     if details:
