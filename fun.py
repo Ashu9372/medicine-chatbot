@@ -1,94 +1,160 @@
 import pandas as pd
 from fuzzywuzzy import fuzz, process
+import os
 
-print("⚠ DISCLAIMER: This is an AI lookup tool for general info.")
-print("ALWAYS consult a qualified doctor or pharmacist before using medicine.")
+print("⚠ DISCLAIMER: This is an AI lookup tool for general information only.")
+print("Always consult a qualified doctor before using medicine.\n")
 
+# ============================================================
+#  LOAD DATA (Robust loader)
+# ============================================================
 def load_data_robust(filename='data.csv'):
-    """Tries to load the CSV file using several common methods and encodings."""
-    
-    # 1. Try simple file name with common encodings
-    for encoding in ['utf8', 'latin1', 'cp1252']:
-        try:
-            data = pd.read_csv('data.csv', encoding=encoding)
-            print(f"✅ Data loaded successfully using '{encoding}' encoding!")
-            return data
-        except UnicodeDecodeError:
-            continue
-        except FileNotFoundError:
-            # If the file is not found by the simple name, continue to next block
-            break
-        except Exception as e:
-            continue
+    """
+    Loads the medicine CSV file using multiple fallback paths and encodings.
+    Returns pandas DataFrame.
+    """
 
-    # 2. Try searching for the file using its full absolute path (forward slashes)
-    try:
-        # NOTE: This is your specific full path used as a backup!
-        full_path = 'C:\\Users\\ashraf khan\\Dropbox\\data.csv'
-        data = pd.read_csv(full_path, encoding='utf8')
-        print("✅ Data loaded successfully using full path!")
-        return data
-    except Exception:
-        pass
+    possible_paths = [
+        filename,
+        os.path.join(os.getcwd(), filename),
+        r"C:\Users\ashraf khan\Dropbox\data.csv"
+    ]
 
-    # If all methods fail
-    print("\n------------------------------------------------------------")
-    print(f"❌ FATAL ERROR: Data file '{filename}' could not be found or read.")
-    print("Please confirm the file is named 'data.csv' and is in this folder.")
-    print("------------------------------------------------------------")
-    exit()
+    encodings = ["utf8", "latin1", "cp1252"]
 
-def get_medicine_info(query, data, data_lower, threshold_strict=45, threshold_partial=40):
-    """Searches the database, using fuzzy matching to find the closest medicine name."""
+    # Try every combination
+    for path in possible_paths:
+        for encoding in encodings:
+            try:
+                df = pd.read_csv(path, encoding=encoding)
+                print(f"✅ Data loaded successfully from '{path}' using '{encoding}' encoding!")
+                return df
+            except (UnicodeDecodeError, FileNotFoundError):
+                continue
+            except Exception:
+                continue
+
+    # If all failed
+    print("❌ ERROR: Could not load 'data.csv'. Please check its location.")
+    raise FileNotFoundError("data.csv not found in any tested paths.")
+
+# ============================================================
+#  ORIGINAL MEDICINE LOOKUP (Preserved functionality)
+# ============================================================
+def get_medicine_info(query, data, data_lower):
+    """
+    Fuzzy-matches medicine name and returns formatted information text.
+    Returns formatted string.
+    """
 
     query_lower = query.lower().strip()
-    
-    # --- 1. Fuzzy Matching Logic (Score 80/100 required for a match) ---
-    # Create a list of all medicine names in lowercase
     medicine_names = data_lower.tolist()
-    
-    # Use fuzzywuzzy to find the best match
+
+    # Fuzzy match (80 score cutoff)
     best_match = process.extractOne(
-        query_lower, 
-        medicine_names, 
-        scorer=fuzz.ratio, 
+        query_lower,
+        medicine_names,
+        scorer=fuzz.ratio,
         score_cutoff=80
     )
-    
+
     if not best_match:
-        return f"I could not find information for '{query}'. Please check the spelling or try a partial name."
+        return f"❌ I could not find information for '{query}'."
 
-    matched_name_lower = best_match[0]
-    
-    result = data[data_lower == matched_name_lower]
+    matched_lower_name = best_match[0]
+    row = data[data_lower == matched_lower_name].iloc[0]
 
-    info = result.iloc[0]
-        
     response = (
-        f"\n✅ Found Match: *{info['Name']}*\n"
-        f"--- \n"
-        f"💊 *Uses:* {info['Uses']}\n"
-        f" Dosage (Adult): {info['Dosage']}\n"
-        f"🚫 *Age Restriction:* {info['Age Restriction']}\n"
-        f"⚠ *Common Side Effects:* {info['Side Effect']}\n" 
+        f"\n"
+        f"✅ Found Match: *{row['Name']}*\n"
+        f"----------------------------------\n"
+        f"💊 Uses: {row['Uses']}\n"
+        f"📏 Dosage (Adult): {row['Dosage']}\n"
+        f"🚫 Age Restriction: {row['Age Restriction']}\n"
+        f"⚠ Side Effects: {row['Side Effect']}\n"
     )
     return response
 
-# --- Main Chatbot Interaction Loop ---
-if __name__ == "__main__":
-    # 1. Load data and setup
-    data = load_data_robust() 
-    data_lower = data['Name'].str.lower()
+# ============================================================
+#  WRAPPER FOR STREAMLIT (returns dictionary + matched name)
+# ============================================================
+def lookup_medicine(query, data):
+    """
+    Safe, reliable lookup for Streamlit.
+    Returns:
+        (details_dict, matched_name)
+        OR
+        (None, None) if not found.
+    """
 
-    print("\u26A0 Hello! What medicine would you like to know about? (Type 'exit' to quit)")
+    # lowercase names
+    names_lower = data["Name"].str.lower().tolist()
+    query_lower = query.lower().strip()
+
+    # Perform fuzzy match directly (90% score recommended)
+    best_match = process.extractOne(
+        query_lower,
+        names_lower,
+        scorer=fuzz.ratio,
+        score_cutoff=70       # Lower threshold → catches more matches
+    )
+
+    if not best_match:
+        return None, None
+
+    matched_lower = best_match[0]
+
+    # Get the row
+    row = data[data["Name"].str.lower() == matched_lower]
+
+    if row.empty:
+        return None, None
+
+    row = row.iloc[0]
+
+    # Prepare dictionary
+    details = {
+        "Name": row["Name"],
+        "Uses": row["Uses"],
+        "Dosage": row["Dosage"],
+        "Age Restriction": row["Age Restriction"],
+        "Side Effects": row["Side Effect"]
+    }
+
+    return details, row["Name"]
+
+# ============================================================
+#   INTERACTIVE MODE (Optional, unchanged)
+# ============================================================
+if __name__ == "__main__":
+    try:
+        df = load_data_robust()
+        df_lower = df["Name"].str.lower()
+    except Exception as e:
+        print("❌ Unable to load data:", e)
+        exit()
+
+    print("💬 Welcome! Type a medicine name (or 'exit'):\n")
 
     while True:
-        user_input = input("You: ").strip()
-        
-        if user_input.lower() == 'exit':
-            print("Thank you for using the medicine lookup tool. Remember to consult a doctor!")
+        user = input("You: ").strip()
+        if user.lower() == "exit":
+            print("Goodbye! Stay safe.")
             break
+<<<<<<< HEAD
+
+        details, name = lookup_medicine(user, df)
+
+        if details is None:
+            print("❌ Not found. Try again.\n")
+        else:
+            print(f"\n✔ Matched: {name}\n")
+            for k, v in details.items():
+                print(f"{k}: {v}")
+            print("\n")
+=======
         
         if user_input:
             response_text = get_medicine_info(user_input, data, data_lower)
             print(f"Chatbot: {response_text}")
+>>>>>>> 93570be1b0596f80fddfc6392ea31bb5d13eec0f
