@@ -93,7 +93,7 @@ user_input = st.text_input(
     "### What medicine would you like to know about?",
     placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc."
 )
-
+st.button("Search Medicines")
 
 # 2. Lookup and Display Logic
 if user_input:
