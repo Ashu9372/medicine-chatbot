@@ -1,7 +1,6 @@
 import pandas as pd
 import os
-# --- NEW IMPORT FOR FUZZY MATCHING ---
-from fuzzywuzzy import fuzz, process
+from fuzzywuzzy import fuzz, process #
 
 # --- CRITICAL SAFETY DISCLAIMER ---
 print("")
@@ -112,4 +111,5 @@ if __name__ == "__main__":
         
         if user_input:
             response_text = get_medicine_info(user_input, data, data_lower) # Make sure 'data' is passed if needed
+            print(f"Chatbot: {response_text}")
             print(f"Chatbot: {response_text}")
