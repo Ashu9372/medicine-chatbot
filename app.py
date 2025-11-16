@@ -68,12 +68,9 @@ def lookup_medicine(name):
         # Found a perfect key match (e.g., user typed 'crocin')
         return MEDICINE_DATA[name_lower], MEDICINE_DATA[name_lower]['Name']
 
-    # 2. Fuzzy Match Check
-    # Use fuzzywuzzy to find the single best match from our list of keys
-    # We use MEDICINE_NAMES (the list of keys) for matching
+    # 2. Fuzzy Match Check (Smarter fallback for typos like 'crocinn')
     best_match = process.extractOne(name_lower, MEDICINE_NAMES, score_cutoff=80)
     
-    # best_match will be a tuple
     if best_match:
         matched_key = best_match[0] # This is the key, e.g., 'crocin'
         
@@ -82,8 +79,6 @@ def lookup_medicine(name):
     
     # 3. Return None if no match is found
     return None, None
-
-
 
 def lookup_by_symptom(query, df, cutoff=70):
     """
