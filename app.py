@@ -226,7 +226,6 @@ def lookup_medicine(name):
     """
     Searches the pre-loaded data structure for a medicine name.
     Tries an exact match first, then fuzzy matching.
-    """
     name_lower = name.lower().strip()
 
     # 1. Exact Match Check (Most efficient)
@@ -245,6 +244,7 @@ def lookup_medicine(name):
     
     # 3. Return None if no match is found
     return None, None
+    """
 # --- 3. STREAMLIT APP LAYOUT ---
 
 st.set_page_config(page_title="AI Medicine Lookup Tool", page_icon="💊", layout="wide")
