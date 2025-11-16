@@ -17,7 +17,7 @@ def load_and_prepare_data():
     
     try:
         # 1. Load the data from the database
-        df = conn.query("SELECT * FROM medicines", ttl=3600) 
+        df = conn.query("SELECT * FROM meds", ttl=3600) 
         
     except Exception as e:
         # Stop the app if the database can't be read
