@@ -4,7 +4,7 @@ import os
 from fuzzywuzzy import fuzz, process #
 
 # Connect to your new database
-conn = st.connection("medicines_db", type="sql", url="sqlite:///medicines.db")
+conn = st.connection("meds_db", type="sql", url="sqlite:///medicines.db")
 
 # --- 1. DATA LOADING AND PREPARATION ---
 
