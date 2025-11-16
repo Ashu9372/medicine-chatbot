@@ -1,79 +1,175 @@
 import streamlit as st
 import pandas as pd
-from fun import load_data_robust, lookup_medicine   # Import correct functions
+import os
+from fuzzywuzzy import fuzz, process #
 
-# ----------------------------------------------------
-# 0. LOAD DATA (cached so loads only once)
-# ----------------------------------------------------
+# Connect to your new database
+conn = st.connection("medicines_db", type="sql", url="sqlite:///medicines.db")
+
 @st.cache_data
-def get_medicine_data():
+def load_and_prepare_data():
+    """
+    Loads data from 'medicines.db', standardizes column names, 
+    AND returns BOTH the fast lookup dictionary AND the full DataFrame.
+    """
+    
     try:
-        return load_data_robust()
-    except Exception:
-        return None
-
-MEDICINE_DF = get_medicine_data()
-
-# ----------------------------------------------------
-# 1. Streamlit Page Settings
-# ----------------------------------------------------
-st.set_page_config(page_title="💊 AI Medicine Lookup Tool", layout="centered")
-
-st.title("💊 AI Medicine Lookup Tool")
-st.info("⚠ ALWAYS consult a qualified doctor or pharmacist before using any medication. "
-        "This tool provides general information only.")
-
-# ----------------------------------------------------
-# 2. Check Data Loading
-# ----------------------------------------------------
-if MEDICINE_DF is None:
-    st.error("❌ CRITICAL ERROR: Could not load 'data.csv'. Please check the file location.")
-    st.stop()
-
-# ----------------------------------------------------
-# 3. Search Form
-# ----------------------------------------------------
-with st.form(key="medicine_search_form"):
-    user_input = st.text_input(
-        "Enter medicine name to search:",
-        placeholder="e.g., Crocin, Aspirin, Nutrich Capsule..."
-    )
-    submitted = st.form_submit_button("Search Medicine")
-
-# ----------------------------------------------------
-# 4. Lookup Logic
-# ----------------------------------------------------
-if submitted and user_input:
-    query = user_input.strip()
-
-    with st.spinner(f"Searching for '{query}'..."):
-        result_details, matched_name = lookup_medicine(query, MEDICINE_DF)
-
-    if result_details is None:
-        st.error(f"❌ No match found for '{query}'.")
-        st.info("💡 Try checking spelling or entering more letters.")
-    else:
-        # Handle fuzzy match (show closest match)
-        if matched_name.lower() != query.lower():
-            st.info(f"🔍 Showing results for **{matched_name}** (closest match found)")
+        # 1. Load the data from the database
+        df = conn.query("SELECT * FROM medicines", ttl=3600) 
         
-        st.success(f"✅ Found information for **{matched_name}**")
+    except Exception as e:
+        # Stop the app if the database can't be read
+        st.error(f"Error loading database: {e}. Please check 'medicines.db'.")
+        st.stop()
 
-        # Convert details to a DataFrame for display
-        display_df = pd.DataFrame(
-            list(result_details.items()),
-            columns=["Attribute", "Detail"]
-        )
+    
+    # 2. Standardize column names
+    df.columns = [col.strip() for col in df.columns]
 
-        # Display the information table
-        st.dataframe(
-            display_df,
-            hide_index=True,
-            use_container_width=True
-        )
+    # 3. Get the name of the first column
+    first_col_name = df.columns[0]
+    
+    medicine_data = {} # Your dictionary
 
-# ----------------------------------------------------
-# 5. Footer
-# ----------------------------------------------------
+    # 4. Prepare the dictionary
+    for index, row in df.iterrows():
+        medicine_name_key = str(row[first_col_name]).lower().strip()
+        
+        details = {}
+        for col in df.columns:
+            if col != first_col_name:
+                details[col] = row[col]
+        
+        details['Name'] = row[first_col_name]
+        medicine_data[medicine_name_key] = details
+    
+    # NEW: Return both the dictionary AND the full DataFrame
+    return medicine_data, df
+
+# --- Load the data right when the application starts ---
+# Correct function call: NO arguments are passed since the file_path is internal
+MEDICINE_DATA, medicine_df = load_and_prepare_data()
+MEDICINE_NAMES = list(MEDICINE_DATA.keys())
+
+
+# --- 2. MAIN LOOKUP FUNCTION (The core logic) ---
+
+def lookup_medicine(name):
+    """
+    Searches the pre-loaded data structure for a medicine name.
+    Tries an exact match first, then fuzzy matching.
+    """
+    name_lower = name.lower().strip()
+
+    # 1. Exact Match Check (Most efficient)
+    if name_lower in MEDICINE_DATA:
+        # Found a perfect key match (e.g., user typed 'crocin')
+        return MEDICINE_DATA[name_lower], MEDICINE_DATA[name_lower]['Name']
+
+    # 2. Fuzzy Match Check
+    # Use fuzzywuzzy to find the single best match from our list of keys
+    # We use MEDICINE_NAMES (the list of keys) for matching
+    best_match = process.extractOne(name_lower, MEDICINE_NAMES, score_cutoff=80)
+    
+    # best_match will be a tuple
+    if best_match:
+        matched_key = best_match[0] # This is the key, e.g., 'crocin'
+        
+        # Now, return the details from the dictionary using the matched key
+        return MEDICINE_DATA[matched_key], MEDICINE_DATA[matched_key]['Name']
+    
+    # 3. Return None if no match is found
+    return None, None
+
+
+
+def lookup_by_symptom(query, df, cutoff=70):
+    """
+    Searches the 'Symptoms' column of the DataFrame for matches.
+    Tries an exact match first, then fuzzy matching.
+    """
+    results = []
+    
+    # Ensure the 'Symptoms' column exists
+    if 'Symptoms' not in df.columns:
+        st.error("Error: 'Symptoms' column not found in data.")
+        return []
+
+    for index, row in df.iterrows():
+        # Check for NaN/empty values in 'Symptoms'
+        if pd.isna(row['Symptoms']):
+            continue
+            
+        # Use fuzzywuzzy 'token_set_ratio'
+        score = fuzz.token_set_ratio(query.lower(), str(row['Symptoms']).lower())
+        
+        if score >= cutoff:
+            # Store the name and its score
+            results.append((row['Name'], score))
+    
+    # Sort results by score, highest first
+    results.sort(key=lambda x: x[1], reverse=True)
+    
+    # Return just the names of the top matches
+    return [name for name, score in results]
+
+# --- 3. STREAMLIT APP LAYOUT ---
+
+st.set_page_config(page_title="AI Medicine Lookup Tool", page_icon="💊", layout="wide")
+st.title("💊 AI Medicine Lookup Tool")
+st.warning("⚠ ALWAYS consult a qualified doctor or pharmacist before using medicine. This tool is for general information only.")
+
+tab1, tab2 = st.tabs(["Search by Medicine Name", "Search by Symptom"])
+
+# --- TAB 1: SEARCH BY NAME ---
+with tab1:
+    st.header("Search by Medicine Name")
+    name_input = st.text_input(
+        "What medicine would you like to know about?",
+        placeholder="e.g., Crocin, Nutrich Capsule, Aspirin, etc.",
+        key="name_search"
+    )
+
+    if name_input:
+        with st.spinner(f"Searching for '{name_input}'..."):
+            # This calls your original lookup_medicine function
+            details, name_found = lookup_medicine(name_input) 
+            
+            if details:
+                st.success(f"✅ Found Information for: *{name_found}*")
+                
+                # Convert dictionary details to a clean DataFrame for display
+                display_data = pd.DataFrame(details.items(), columns=['Attribute', 'Detail'])
+                st.dataframe(
+                    display_data,
+                    hide_index=True,
+                    use_container_width=True
+                )
+            else:
+                st.info(f"❌ Could not find information for '{name_input}'. Try again or be more precise.")
+
+# --- TAB 2: SEARCH BY SYMPTOM ---
+with tab2:
+    st.header("Search by Symptom")
+    symptom_input = st.text_input(
+        "What symptom are you experiencing?",
+        placeholder="e.g., Headache, Fever, Runny Nose",
+        key="symptom_search"
+    )
+    
+    if symptom_input:
+        with st.spinner(f"Searching for medicines related to '{symptom_input}'..."):
+            # Call our new function, passing it the full DataFrame
+            medicine_list = lookup_by_symptom(symptom_input, medicine_df)
+            
+            if medicine_list:
+                st.success(f"✅ Found {len(medicine_list)} medicine(s) for '{symptom_input}':")
+                
+                # Display the results as a list
+                for med_name in medicine_list:
+                    st.markdown(f"- *{med_name}*")
+                
+            else:
+                st.info(f"❌ Could not find any medicines for '{symptom_input}'.")
 st.markdown("---")
-st.caption("App powered by Streamlit and your custom medicine lookup engine.")
+st.caption("Application powered by Streamlit (Ashraf) and your custom data lookup logic.")
