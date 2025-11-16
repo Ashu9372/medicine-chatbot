@@ -7,3 +7,4 @@ python-Levenshtein==0.27.3
 streamlit==1.51.0
 fuzzywuzzy
 sqlalchemy
+google-generativeai
