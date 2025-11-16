@@ -223,21 +223,28 @@ MEDICINE_NAMES = list(MEDICINE_DATA.keys())
 # --- 2. MAIN LOOKUP FUNCTION (The core logic) ---
 
 def lookup_medicine(name):
-    """Searches the pre-loaded data structure for a medicine name."""
+    """
+    Searches the pre-loaded data structure for a medicine name.
+    Tries an exact match first, then fuzzy matching.
+    """
     name_lower = name.lower().strip()
-    
+
     # 1. Exact Match Check (Most efficient)
     if name_lower in MEDICINE_DATA:
-        return MEDICINE_DATA[name_lower], name_lower
+        # Found a perfect key match (e.g., user typed 'crocin')
+        return MEDICINE_DATA[name_lower], MEDICINE_DATA[name_lower]['Name']
 
-    # 2. Partial Match Check (Less efficient, used as fallback)
-    # Check if the key starts with the user's input for better accuracy than substring match
-    for key in MEDICINE_NAMES:
-        if key.startswith(name_lower):
-            return MEDICINE_DATA[key], key
-            
-    return None, None # Return None if no match is found
-
+    # 2. Fuzzy Match Check (Smarter fallback for typos like 'crocinn')
+    best_match = process.extractOne(name_lower, MEDICINE_NAMES, score_cutoff=80)
+    
+    if best_match:
+        matched_key = best_match[0] # This is the key, e.g., 'crocin'
+        
+        # Now, return the details from the dictionary using the matched key
+        return MEDICINE_DATA[matched_key], MEDICINE_DATA[matched_key]['Name']
+    
+    # 3. Return None if no match is found
+    return None, None
 # --- 3. STREAMLIT APP LAYOUT ---
 
 st.set_page_config(page_title="AI Medicine Lookup Tool", page_icon="💊", layout="wide")
