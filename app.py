@@ -3,8 +3,8 @@ import pandas as pd
 import os
 from fuzzywuzzy import fuzz, process #
 import google.generativeai as genai
+from streamlit_mic_recorder import mic_recorder
 
-# Connect to your new database
 conn = st.connection("mediciines.db", type="sql", url="sqlite:///medicines.db")
 
 # --- 1. DATA LOADING AND PREPARATION ---
@@ -112,7 +112,6 @@ def lookup_by_symptom(query, df, cutoff=70):
     return [name for name, score in results]
 
 # --- 4. AI SYMPTOM EXTRACTOR ---
-
 def extract_symptoms_with_ai(user_query):
     """
     Uses the Gemini AI to extract key symptoms from a user's natural language query.
@@ -124,24 +123,24 @@ def extract_symptoms_with_ai(user_query):
         st.error("Error: Could not configure AI. Have you set your GOOGLE_API_KEY in .streamlit/secrets.toml?")
         return None
 
-    # This is the "prompt" that tells the AI what to do
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    # This line must be correctly indented under the 'def'
+    model = genai.GenerativeModel('gemini-2.5-flash') 
+    
+    # The 'prompt' variable itself must be correctly indented.
+    # The text inside the triple quotes should be left-aligned (no indentation).
     prompt = f"""
-    You are a medical symptom extractor. Analyze the user's text and extract the key medical symptoms.
-    Return ONLY a comma-separated list of symptoms. Do not add any explanation or greeting.
+You are a medical symptom extractor. Analyze the user's text and extract the key medical symptoms.
+Return ONLY a comma-separated list of symptoms or the word 'None'. Do not add any explanation.
 
-    User Text: "I have a bad headache and feel really hot, like I have a fever."
-    Symptoms: Headache, Fever
+User Text: "I feel pain in my head, and I need something to fix it."
+Symptoms: Headache
 
-    User Text: "My nose won't stop running and I'm sneezing a lot."
-    Symptoms: Runny Nose, Sneezing
-    
-    User Text: "My muscles are really sore"
-    Symptoms: Muscle Soreness
-    
-    User Text: "{user_query}"
-    Symptoms: 
-    """
+User Text: "I can't sleep anymore."
+Symptoms: Insomnia
+
+User Text: "{user_query}"
+Symptoms: 
+"""
 
     try:
         # Send the prompt to the AI
@@ -212,29 +211,55 @@ with tab2:
             else:
                 st.info(f"❌ Could not find any medicines for '{symptom_input}'.")
               
-# --- TAB 3: AI ASSISTANT (New logic) ---
+# --- TAB 3: AI ASSISTANT (Voice Integration) ---
 with tab3:
     st.header("AI Assistant 🤖")
-    st.info("Ask in plain English, like 'My head hurts and I feel hot.'")
-
+    st.info("Ask in plain English, or click the mic button to speak!")
+    
+    # 1. VOICE INPUT COMPONENT
+    voice_recording = mic_recorder(
+        start_prompt="Click to Speak",
+        stop_prompt="Analyzing Audio...",
+        key='mic_recorder',
+        callback=None,
+        just_once=False 
+    )
+    
+    st.markdown("---")
+    
+    # 2. TEXT INPUT (Retained for typing)
     ai_input = st.text_input(
-        "How are you feeling?",
+        "How are you feeling? (Or type your question here)",
         placeholder="e.g., I'm feeling really hot and my head hurts...",
         key="ai_search"
     )
 
-    if ai_input:
+# 3. Determine which input to use (Voice takes priority)
+    input_to_use = None
+    
+    if voice_recording and 'text' in voice_recording and voice_recording['text']:
+        input_to_use = voice_recording['text']
+        st.info(f"🎙 *Transcribed Text:* {input_to_use}")
+        
+    elif ai_input:
+        input_to_use = ai_input
+
+    
+    if input_to_use:
+        # --- AI LOGIC (This starts the processing) ---
         with st.spinner("Asking the AI to understand your symptoms..."):
+
             # 1. AI extracts keywords
-            symptoms_from_ai = extract_symptoms_with_ai(ai_input)
-
-        if symptoms_from_ai:
+            symptoms_from_ai = extract_symptoms_with_ai(input_to_use) 
+        
+        if symptoms_from_ai and symptoms_from_ai.lower() != 'none':
             st.write(f"*AI understood your symptoms as:* {symptoms_from_ai}")
-
+            
             with st.spinner(f"Searching your database for '{symptoms_from_ai}'..."):
                 # 2. Feed keywords into your existing symptom function
                 medicine_list = lookup_by_symptom(symptoms_from_ai, medicine_df)
-
+            
+            # --- DISPLAY RESULTS ---
             if medicine_list:
                 st.success(f"✅ Found {len(medicine_list)} medicine(s) for your symptoms:")
                 for med_name in medicine_list:
