@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
-import os
 from fuzzywuzzy import fuzz, process #
 import google.generativeai as genai
-from streamlit_mic_recorder import mic_recorder
+from streamlit_mic_recorder import mic_recorder, speech_to_text #
+import os
 
+# --- DATABASE CONNECTION SETUP ---
 conn = st.connection("mediciines.db", type="sql", url="sqlite:///medicines.db")
 
 # --- 1. DATA LOADING AND PREPARATION ---
@@ -217,12 +218,12 @@ with tab3:
     st.info("Ask in plain English, or click the mic button to speak!")
     
     # 1. VOICE INPUT COMPONENT
-    voice_recording = mic_recorder(
+    voice_recording = speech_to_text(
+        language="en",
         start_prompt="Click to Speak",
         stop_prompt="Analyzing Audio...",
-        key='mic_recorder',
-        callback=None,
-        just_once=False 
+        key='stt_recording',
+        just_once=False
     )
     
     st.markdown("---")
@@ -234,16 +235,15 @@ with tab3:
         key="ai_search"
     )
 
-# 3. Determine which input to use (Voice takes priority)
+# 3. Determine which input to use (speech-to-text output takes priority)
     input_to_use = None
     
-    if voice_recording and 'text' in voice_recording and voice_recording['text']:
-        input_to_use = voice_recording['text']
+    if voice_recording:
+        input_to_use = voice_recording
         st.info(f"🎙 *Transcribed Text:* {input_to_use}")
         
     elif ai_input:
         input_to_use = ai_input
-
     
     if input_to_use:
         # --- AI LOGIC (This starts the processing) ---
