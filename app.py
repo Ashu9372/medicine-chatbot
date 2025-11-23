@@ -268,3 +268,7 @@ with tab3:
                 st.info(f"❌ Your database has no medicines for the symptoms: '{symptoms_from_ai}'.")
         else:
             st.error("Could not process your request with the AI.")
+
+        # --- FOOTER ---
+            st.markdown("---") # Adds a visible line separator
+            st.caption("© 2025 | Developed by **Ashraf & Shoaib**")
