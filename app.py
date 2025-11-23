@@ -269,6 +269,7 @@ with tab3:
         else:
             st.error("Could not process your request with the AI.")
 
-        # --- FOOTER ---
-            st.markdown("---") # Adds a visible line separator
-            st.caption("© 2025 | Developed by **Ashraf & Shoaib**")
+       # --- FOOTER ---
+st.markdown("---") # Adds a visible line separator
+st.caption("© 2025 | Developed by *Ashraf & Shoaib*")
+st.caption("⚠ *Disclaimer:* Always consult a healthcare professional. This tool is for educational purposes only.")
