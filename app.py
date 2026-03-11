@@ -4,7 +4,35 @@ from fuzzywuzzy import fuzz, process #
 import google.generativeai as genai
 from streamlit_mic_recorder import mic_recorder, speech_to_text #
 import os
+import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
+# -- Load the  model --
+@st.cache_resource
+def load_model():
+    tokenizer = AutoTokenizer.from_pretrained("symptom_model")
+    model = AutoModelForSequenceClassification.from_pretrained("symptom_model")
+    return tokenizer, model
+
+tokenizer, model = load_model()
+
+# -- Prediction Function --
+def predict_symptom(text):
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+
+    outputs = model(**inputs)
+
+    predicted_class_id = torch.argmax(outputs.logits).item()
+
+    categories = {
+        0: "General Fever & Pain",
+        1: "Digestive Issue",
+        2: "Skin / Allergy",
+        3: "Emergency Symptom"
+    }
+
+    return categories[predicted_class_id]
+    
 # --- DATABASE CONNECTION SETUP ---
 conn = st.connection("mediciines.db", type="sql", url="sqlite:///medicines.db")
 
@@ -196,10 +224,19 @@ with tab2:
         key="symptom_search"
     )
     
-    if symptom_input:
-        with st.spinner(f"Searching for medicines related to '{symptom_input}'..."):
-            # Call our new function, passing it the full DataFrame
-            medicine_list = lookup_by_symptom(symptom_input, medicine_df)
+  if symptom_input:
+
+    with st.spinner("AI analyzing symptoms..."):
+
+        # Step 1: Predict symptom category
+        category = predict_symptom(symptom_input)
+
+    st.info(f"🧠 AI detected category: **{category}**")
+
+    with st.spinner(f"Searching medicines related to '{symptom_input}'..."):
+
+        # Step 2: Search medicines
+        medicine_list = lookup_by_symptom(symptom_input, medicine_df)
             
             if medicine_list:
                 st.success(f"✅ Found {len(medicine_list)} medicine(s) for '{symptom_input}':")
