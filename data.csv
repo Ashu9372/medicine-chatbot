@@ -1,0 +1,217 @@
+﻿Name,Uses,Dosage,Age Restriction,Side Effect,Symptoms
+Crocin ,"Fever, Pain relief",500 mg ,Not under  12 years,Mild nausea ,"Fever,Pain,Headache,Body Ache"
+Amoxicillin ,Bacterial Infection,250 mg 3 time a day ,N/A,"Rash,Diarrhea ","Fatigue, Swollen lymph  nodes,Tonsilities"
+Zyrtec,For minute allergy infection,1 tablet daily ,Not under 10 years,"Drowsiness, dry mouth ","Runny nose,Sneezing,Itchy eyes,Allergy,Itching"
+Nutrich capsule ,For hair growth & hair thicking ,2 tablet a day  (for 25 yrs or below patient) 1 tablet a day (for 30 or above yrs patient),Not under 15 years,Accidental over dosage may cause:  mild allergic reaction & the burning sensation in the stomach.,"Hair thinning, Hair loss, weak scalp"
+Cholecalciferol tablet,Bone strength & vitamin  D ,1 capsule a day ,Generally no age restriction but avoid to (0 - 12 month) infant,Over dosage of the tablet  may cause: vitamin  D toxicity and more over dosage cause a kidney and  urinary issue.,"Vitamin D deficiency, Bone pain, muscle weakness"
+Cetrizine,Antihistamine,10 mg,N/A,"Drowsiness, sore throat,Diarrhea(Specially in children)","Runny nose,Sneezing,Itchy eyes,Allergy,Itching"
+Paracetamol,"pain relief, fever",500 mg to 1000 mg,N/A,"nausea, liver damage(if overdose)","fever, minor pain, body pain"
+Ibuprofen,"Inflammation,pain,arthritis",200 mg to 400 mg,not under 9 months,"stomach pain,heartburn,ulcers","inflammation,pain,arthritis"
+Metformin,Maintain blood sugar,500 mg to 1000 mg,not under 18 years,"bloating,gas,diarrhea",High blood sugar
+Aspirin,Pain/Blood Thinner,300mg as needed,16+,Bleeding risk,Pain/Blood Thiking
+Naproxen,Joint Pain/Swelling,250-500mg every 12h,12+,Gastric irritation,Joint Pain/Swelling
+Diclofenac,Arthritis/Pain,50mg every 8h,18+,Heartburn,Arthritis/Pain
+Codeine,Severe Pain,15-30mg every 4h,12+,Constipation,Severe Pain
+Tramadol,Moderate-Severe Pain,50-100mg every 4-6h,12+,Dizziness,Moderate-Severe Pain
+Morphine,Severe Pain,2.5-10mg every 4h,Prescription needed,Drowsiness,Severe Pain
+Oxycodone,Severe Pain,5-10mg every 6h,Prescription needed,Addiction risk,Severe Pain
+Gabapentin,Nerve Pain,300mg day 1 then up,18+,Fatigue,Nerve Pain
+Pregabalin,Nerve Pain/Anxiety,75mg twice daily,18+,Weight gain,Nerve Pain/Anxiety
+Amitriptyline,Nerve Pain/Migraine,10-25mg at night,12+,Dry mouth,Nerve Pain/Migraine
+Sumatriptan,Migraine Attack,50mg at onset,18+,Tingling,"Migraine Attack, migraine"
+Rizatriptan,Migraine Attack,10mg at onset,18+,Drowsiness,"Migraine Attack, migraine"
+Co-amoxiclav,Severe Infection,625mg every 8h,Prescription needed,Diarrhea,"Severe Infection, infection"
+Flucloxacillin,Skin Infection,500mg every 6h,Prescription needed,Nausea,Skin Infection
+Phenoxymethylpenicillin,Throat Infection,500mg every 6h,Prescription needed,Allergy,Throat Infection
+Cephalexin,UTI/Skin Infection,500mg every 6h,Prescription needed,Diarrhea,UTI/Skin Infection
+Cefaclor,Ear/Throat Infection,250mg every 8h,Prescription needed,Itching,Ear/Throat Infection
+Cefixime,Gonorrhea/Infection,400mg single dose,Prescription needed,Stomach pain,Gonorrhea/Infection
+Trimethoprim,UTI,200mg twice daily,12+,Nausea,UTI
+Nitrofurantoin,UTI,100mg twice daily,12+,Dark urine,UTI
+Ciprofloxacin,Severe Bacterial Inf,500mg every 12h,18+,Tendon pain,Severe Bacterial Inf
+Levofloxacin,Chest Infection,500mg daily,18+,Insomnia,Chest Infection
+Moxifloxacin,Sinusitis,400mg daily,18+,Dizziness,Sinusitis
+Erythromycin,Chest/Skin Infection,250mg every 6h,Prescription needed,Stomach cramps,Chest/Skin Infection
+Clarithromycin,H. Pylori/Chest Inf,250-500mg every 12h,Prescription needed,Metallic taste,H. Pylori/Chest Inf
+Azithromycin,Chlamydia/Chest Inf,500mg daily (3 days),Prescription needed,Abdominal pain,Chlamydia/Chest Inf
+Doxycycline,Acne/Malaria,100mg daily,12+,Sun sensitivity,Acne/Malaria
+Lymecycline,Acne,408mg daily,12+,Headache,Acne
+Minocycline,Acne,100mg daily,12+,Dizziness,Acne
+Metronidazole,Dental Infection,400mg every 8h,Prescription needed,No alcohol (Vomit),Dental Infection
+Tinidazole,Parasitic Infection,2g single dose,Prescription needed,Bitter taste,Parasitic Infection
+Clindamycin,Skin/Bone Infection,150-300mg every 6h,Prescription needed,Diarrhea,Skin/Bone Infection
+Vancomycin,C. Difficile,125mg every 6h,Prescription needed,Kidney check,C. Difficile
+Gentamicin,Severe Infection,Varies by weight,Hospital,Hearing loss,Severe Infection
+Amlodipine,High BP,5-10mg daily,18+,Ankle swelling,High BP
+Felodipine,High BP,5mg daily,18+,Flushing,High BP
+Nifedipine,High BP/Angina,10-40mg every 12h,18+,Headache,High BP/Angina
+Diltiazem,Angina/BP,60mg every 8h,18+,Swollen gums,Angina/BP
+Verapamil,Arrhythmia,40-80mg every 8h,18+,Constipation,Arrhythmia
+Ramipril,High BP/Heart Fail,2.5-10mg daily,18+,Dry cough,High BP/Heart Fail
+Lisinopril,High BP,10-20mg daily,18+,Dizziness,High BP
+Enalapril,High BP,5-20mg daily,18+,Fatigue,High BP
+Perindopril,High BP,4-8mg daily,18+,Cough,High BP
+Losartan,High BP,50-100mg daily,18+,Dizziness,High BP
+Candesartan,High BP,8-32mg daily,18+,Headache,High BP
+Valsartan,Heart Failure,40-160mg twice daily,18+,Fatigue,Heart Failure
+Irbesartan,High BP,150-300mg daily,18+,Muscle pain,High BP
+Atenolol,Angina/BP,25-50mg daily,18+,Cold hands,Angina/BP
+Bisoprolol,Heart Failure,1.25-10mg daily,18+,Slow heart rate,Heart Failure
+Metoprolol,High BP,50-100mg daily,18+,Fatigue,High BP
+Propranolol,Anxiety/Tremor,10-40mg as needed,12+,Nightmares,Anxiety/Tremor
+Carvedilol,Heart Failure,3.125-25mg twice daily,18+,Low BP,Heart Failure
+Nebivolol,High BP,5mg daily,18+,Headache,High BP
+Furosemide,Edema (Swelling),20-40mg daily,18+,Freq urination,Edema (Swelling)
+Bumetanide,Edema,1mg daily,18+,Electrolyte loss,Edema
+Spironolactone,Fluid Retention,25-100mg daily,18+,High potassium,Fluid Retention
+Indapamide,High BP,2.5mg daily,18+,Dry mouth,High BP
+Bendroflumethiazide,High BP,2.5mg daily,18+,Gout risk,High BP
+Atorvastatin,Cholesterol,10-80mg daily,18+,Muscle ache,Cholesterol
+Simvastatin,Cholesterol,20-40mg evening,18+,Weakness,Cholesterol
+Rosuvastatin,Cholesterol,5-20mg daily,18+,Headache,Cholesterol
+Pravastatin,Cholesterol,10-40mg evening,18+,Stomach pain,Cholesterol
+Ezetimibe,Cholesterol,10mg daily,18+,Diarrhea,Cholesterol
+Bezafibrate,Triglycerides,200mg daily,18+,Nausea,Triglycerides
+Fenofibrate,Triglycerides,200mg daily,18+,Stomach pain,Triglycerides
+Warfarin,Blood Clot Prev,Per INR test,18+,Bleeding,Blood Clot Prev
+Rivaroxaban,Blood Clot Prev,20mg daily,18+,Bruising,Blood Clot Prev
+Apixaban,Blood Clot Prev,5mg twice daily,18+,Bleeding,Blood Clot Prev
+Dabigatran,Blood Clot Prev,150mg twice daily,18+,Indigestion,Blood Clot Prev
+Clopidogrel,Stroke Prevention,75mg daily,18+,Bruising,Stroke Prevention
+Ticagrelor,Heart Attack Prev,90mg twice daily,18+,Short breath,Heart Attack Prev
+Dipyridamole,Stroke Prevention,200mg twice daily,18+,Headache,Stroke Prevention
+Isosorbide Mononitrate,Angina Prev,60mg daily,18+,Throbbing headache,Angina Prev
+Glyceryl Trinitrate,Angina Attack,1-2 sprays under tongue,18+,Dizziness,Angina Attack
+Digoxin,Heart Rhythm,125-250mcg daily,18+,Vision changes,Heart Rhythm
+Amiodarone,Arrhythmia,200mg daily,18+,Sun sensitivity,Arrhythmia
+Omeprazole,Acid Reflux,20mg daily,18+,Gas,Acid Reflux
+Paracetamol Paediatric Susp,Fever/Pain,5ml every 4-6 hrs,2+ Months,Rare rash,Fever/Pain
+Ibuprofen Infant Susp,Inflammation/Fever,2.5ml every 6-8 hrs,3+ Months,Stomach upset,Inflammation/Fever
+Dextromethorphan HBr,Dry Cough,10ml every 6 hrs,12+ Years,Drowsiness,Dry Cough
+Guaifenesin Syrup,Chesty Cough,10-20ml every 4 hrs,12+ Years,Nausea,Chesty Cough
+Bromhexine HCl,Mucus Congestion,10ml every 8 hrs,6+ Years,Bloating,Mucus Congestion
+Ambroxol Syrup,Phlegm Reduction,5ml every 8 hrs,6+ Years,Indigestion,Phlegm Reduction
+Diphenhydramine Elixir,Allergy/Sleep,5-10ml at night,12+ Years,Drowsiness,Allergy/Sleep
+Chlorphenamine Maleate,Allergy/fever,5ml every 4-6 hrs,2+ Years,Sedation,Allergy/hay fever
+Cetirizine Solution,Allergies,5ml once daily,2+ Years,Fatigue,Allergies
+Loratadine Syrup,Hives/Allergies,10ml once daily,2+ Years,Headache,Hives/Allergies
+Promethazine Syrup,Nausea/Allergy,5-10ml at night,5+ Years,Drowsiness,Nausea/Allergy
+Codeine Linctus,Dry Cough/Pain,5-10ml every 4 hrs,18+ Years,Constipation,Dry Cough/Pain
+Pholcodine Linctus,Dry Cough,5-10ml every 4 hrs,12+ Years,Dizziness,Dry Cough
+Simple Linctus,Sore Throat,5ml as needed,All Ages,None (Sugar content),Sore Throat
+Glycerine & Lemon,Sore Throat,10ml as needed,1+ Years,None,Sore Throat
+Amoxicillin Susp 125mg,Bacterial Infection,5ml every 8 hrs,Prescription needed,Diarrhea,Bacterial Infection
+Amoxicillin Susp 250mg,Severe Infection,5ml every 8 hrs,Prescription needed,Rash,Severe Infection
+Azithromycin Susp,Chest Infection,5ml daily (3 days),Prescription needed,Stomach pain,Chest Infection
+Clarithromycin Susp,Resp Infection,5ml every 12 hrs,Prescription needed,Bitter taste,Resp Infection
+Erythromycin Susp,Acne/Infection,5ml every 6 hrs,Prescription needed,Nausea,Acne/Infection
+Cefixime Susp,UTI/Ear Infection,Varies by weight,Prescription needed,Loose stools,UTI/Ear Infection
+Cefaclor Susp,Throat Infection,5ml every 8 hrs,Prescription needed,Itching,Throat Infection
+Cephalexin Susp,Skin Infection,5ml every 6 hrs,Prescription needed,Diarrhea,Skin Infection
+Co-Trimoxazole Susp,Lung Infection,5ml every 12 hrs,Prescription needed,Rash,Lung Infection
+Flucloxacillin Susp,Wound Infection,5ml every 6 hrs,Prescription needed,Indigestion,Wound Infection
+Penicillin V Solution,Tonsillitis,5ml every 6 hrs,Prescription needed,Allergy,Tonsillitis
+Nystatin Suspension,Oral Thrush,1ml every 6 hrs,All Ages,Nausea,Oral Thrush
+Fluconazole Susp,Fungal Infection,5ml daily,Prescription needed,Headache,Fungal Infection
+Acyclovir Susp,Chicken Pox,5ml 5 times daily,Prescription needed,Vomiting,Chicken Pox
+Oseltamivir Susp,Flu (Influenza),Varies by weight,Prescription needed,Nausea,Flu (Influenza)
+Lactulose Solution,Constipation,15-30ml daily,All Ages,Flatulence,Constipation
+Gaviscon Liquid,Heartburn/Reflux,10-20ml after meals,12+ Years,Bloating,Heartburn/Reflux
+Magnesium Hydroxide,Indigestion,10ml as needed,12+ Years,Diarrhea,Indigestion
+Aluminum Hydroxide,Stomach Acid,10ml between meals,12+ Years,Constipation,Stomach Acid
+Simethicone Drops,Infant Colic,0.5ml before feed,0+ Months,None,Infant Colic
+Dicyclomine Syrup,Stomach Cramps,5ml every 6 hrs,6+ Months,Dry mouth,Stomach Cramps
+Ondansetron Syrup,Vomiting,5ml every 8 hrs,Prescription needed,Constipation,Vomiting
+Domperidone Susp,Nausea,10ml every 8 hrs,12+ Years,Dry mouth,Nausea
+Metoclopramide Syrup,Gastric Emptying,10ml every 8 hrs,18+ Years,Muscle spasms,Gastric Emptying
+Loperamide Syrup,Diarrhea,10ml initially,12+ Years,Cramps,Diarrhea
+Hyoscine Syrup,Travel Sickness,5ml before trip,3+ Years,Dry mouth,Travel Sickness
+Senna Syrup,Constipation,10ml at bedtime,6+ Years,Cramps,Constipation
+Bisacodyl Syrup,Bowel Prep,5-10ml at night,10+ Years,Abdominal pain,Bowel Prep
+Liquid Paraffin,Constipation,10-30ml at night,12+ Years,Oil leakage,Constipation
+Sodium Picosulfate,Constipation,5-10 drops at night,10+ Years,Cramps,Constipation
+Multivitamin Syrup,Vitamin Deficiency,5ml daily,All Ages,Yellow urine,Vitamin Deficiency
+Iron (Ferrous Sulphate),Anaemia,5ml twice daily,All Ages,Black teeth stain,Anaemia
+Calcium & Vitamin D,Bone Health,10ml twice daily,All Ages,Gas,Bone Health
+Zinc Sulphate Syrup,Immunity/Diarrhea,5ml daily,6+ Months,Metallic taste,Immunity/Diarrhea
+Vitamin B-Complex,Energy/Metabolism,5ml daily,12+ Years,Bright urine,Energy/Metabolism
+Vitamin C Syrup,Immunity,5ml daily,All Ages,Acid reflux,Immunity
+Cod Liver Oil,Heart/Brain Health,10ml daily,All Ages,Fishy burps,Heart/Brain Health
+Omega-3 Emulsion,Focus/Brain,5ml daily,2+ Years,Aftertaste,Focus/Brain
+Lysine Syrup,Appetite Stimulant,5ml twice daily,2+ Years,None,Appetite Stimulant
+Cyproheptadine Syrup,Appetite/Allergy,5ml twice daily,2+ Years,Drowsiness,Appetite/Allergy
+Salbutamol Syrup,Asthma Relief,5ml every 6 hrs,2+ Years,Shaking/Tremor,Asthma Relief
+Terbutaline Syrup,Bronchospasm,5ml every 6 hrs,2+ Years,Rapid heart rate,Bronchospasm
+Theophylline Syrup,COPD/Asthma,10ml every 8 hrs,Prescription needed,Nausea,COPD/Asthma
+Prednisolone Solution,Severe Asthma,Varies by weight,Prescription needed,Mood swings,Severe Asthma
+Dexamethasone Elixir,Croup/Inflammation,Single dose usually,Prescription needed,Agitation,Croup/Inflammation
+Ephedrine Elixir,Nasal Congestion,5-10ml every 6 hrs,12+ Years,Insomnia,Nasal Congestion
+Pseudoephedrine Liq,Blocked Nose,5ml every 4-6 hrs,6+ Years,Anxiety,Blocked Nose
+Phenylephrine Syrup,Cold/Flu,10ml every 4 hrs,12+ Years,High BP,Cold/Flu
+Triprolidine Syrup,Allergy/Cold,5ml every 6 hrs,6+ Years,Drowsiness,Allergy/Cold
+Carbocisteine Syrup,COPD Mucus,15ml every 8 hrs,12+ Years,GI bleeding risk,COPD Mucus
+Ivy Leaf Extract,Cough (Herbal),5ml three times daily,All Ages,Mild nausea,Cough (Herbal)
+Pelargonium Syrup,Common Cold,3ml three times daily,6+ Years,Stomach upset,Common Cold
+Honey & Lemon,Sore Throat,10ml as needed,1+ Years,Sugar rush,Sore Throat
+Echinacea Drops,Immunity,20 drops daily,12+ Years,Allergy,Immunity
+Elderberry Syrup,Flu Support,10ml daily,2+ Years,Laxative effect,Flu Support
+Diazepam Solution,Anxiety/Spasm,2-5mg as needed,Prescription needed,Sedation,Anxiety/Spasm
+Midazolam Liquid,Sedation/Seizure,Prescription needed Only,Prescription needed,Amnesia,Sedation/Seizure
+Chloral Hydrate,Insomnia (Rare),Varies,Prescription needed,Confusion,Insomnia (Rare)
+Melatonin Liquid,Sleep Aid,1-3mg before bed,12+ Years,Grogginess,Sleep Aid
+Sodium Valproate,Epilepsy,200-400mg daily,Prescription needed,Tremor,Epilepsy
+Levetiracetam Sol,Epilepsy,Varies by weight,Prescription needed,Irritability,Epilepsy
+Carbamazepine Susp,Nerve Pain,100-200mg daily,Prescription needed,Dizziness,Nerve Pain
+Phenytoin Suspension,Seizures,Varies,Prescription needed,Gum growth,Seizures
+Ethosuximide Syrup,Absence Seizures,250mg daily,Prescription needed,Nausea,Absence Seizures
+Gabapentin Solution,Nerve Pain,300mg daily start,Prescription needed,Fatigue,Nerve Pain
+Risperidone Liquid,Behavioural,0.5mg daily,Prescription needed,Weight gain,Behavioural
+Lithium Citrate Liq,Mood Stabilizer,Blood level depend,Prescription needed,Thirst,Mood Stabilizer
+Methadone Solution,Opioid Detox,Daily supervised,Prescription needed,Respiratory depression,Opioid Detox
+Morphine Solution,Severe Pain,2.5-10mg every 4h,Prescription needed,Drowsiness,Severe Pain
+Oxycodone Liquid,Severe Pain,5mg every 6 hrs,Prescription needed,Addiction,Severe Pain
+Tramadol Drops,Moderate Pain,20 drops every 6h,Prescription needed,Nausea,Moderate Pain
+Fentanyl Loz/Spray,Breakthrough Pain,Microgram dosing,Prescription needed,Sedation,Breakthrough Pain
+Potassium Chloride,Hypokalaemia,Dilute in water,Prescription needed,Stomach burn,Hypokalaemia
+Sodium Citrate,Cystitis,Dilute in water,18+,Alkaline urine,Cystitis
+Cranberry Concentrate,UTI Prevention,10ml daily,All Ages,Sugar content,UTI Prevention
+Potassium Citrate,Kidney Stones,10ml diluted,18+,Stomach pain,Kidney Stones
+Digoxin Elixir,Heart Failure,Microgram dosing,Prescription needed,Vision change,Heart Failure
+Furosemide Liquid,Edema,20-40mg daily,Prescription needed,Urination,Edema
+Spironolactone Susp,Heart Failure,25mg daily,Prescription needed,High potassium,Heart Failure
+Propranolol Solution,Anxiety/Heart,10-40mg daily,Prescription needed,Cold hands,Anxiety/Heart
+Atenolol Syrup,High BP,25-50mg daily,Prescription needed,Fatigue,High BP
+Captopril Liquid,High BP,12.5mg start,Prescription needed,Dry cough,High BP
+Enalapril Suspension,High BP,2.5-5mg daily,Prescription needed,Dizziness,High BP
+Lisinopril Solution,High BP,10mg daily,Prescription needed,Headache,High BP
+Sildenafil Suspension,Pulmonary HTN,20mg three times,Prescription needed,Flushing,Pulmonary HTN
+Warfarin Suspension,Blood Thinner,INR dependent,Prescription needed,Bleeding,Blood Thinner
+Cyclosporine Liquid,Transplant,Weight based,Prescription needed,Kidney strain,Transplant
+Tacrolimus Susp,Transplant,Weight based,Prescription needed,Tremor,Transplant
+Mycophenolate Susp,Immune Suppress,Weight based,Prescription needed,Infection risk,Immune Suppress
+Methotrexate Sol,Chemo/Arthritis,Weekly dose,Prescription needed,Nausea/Hair loss,Chemo/Arthritis
+Mercaptopurine Susp,Leukemia,Daily dose,Prescription needed,Low blood count,Leukemia
+Azathioprine Susp,Autoimmune,Daily dose,Prescription needed,Nausea,Autoimmune
+Hydroxyzine Syrup,Itching/Anxiety,10-25mg daily,Prescription needed,Dry mouth,Itching/Anxiety
+Alimemazine Syrup,Hives/Itch,10mg as needed,2+ Years,Sedation,Hives/Itch
+Dimetindene Drops,Insect Bites,20 drops 3x daily,1+ Years,Fatigue,Insect Bites
+Ketotifen Syrup,Asthma/Allergy,5ml twice daily,3+ Years,Weight gain,Asthma/Allergy
+Montelukast Granules,Asthma Prev,4mg sachet daily,6+ Months,Nightmares,Asthma Prev
+Ranitidine Syrup,Reflux (Acid),5ml twice daily,12+ Years,Headache,Reflux (Acid)
+Famotidine Susp,Reflux,5ml twice daily,12+ Years,Dizziness,Reflux
+Omeprazole Susp,Acid Reflux,10-20mg daily,Prescription needed,Headache,Acid Reflux
+Lansoprazole Susp,Acid Reflux,15-30mg daily,Prescription needed,Diarrhea,Acid Reflux
+Sucralfate Suspension,Ulcers,10ml four times,Prescription needed,Constipation,Ulcers
+Ursodeoxycholic Acid,Gallstones,Weight based,Prescription needed,Soft stools,Gallstones
+Colestyramine,Bile Acid Diarrhea,1 sachet daily,Prescription needed,Bloating,Bile Acid Diarrhea
+Oral Rehydration Salt,Dehydration,200ml after loss,All Ages,Salty taste,Dehydration
+Glucose Polymer,Energy Boost,As needed,All Ages,High blood sugar,Energy Boost
+Protein Supplement,Malnutrition,200ml bottle,All Ages,Fullness,Malnutrition
+MCT Oil,Malabsorption,15ml daily,All Ages,Diarrhea,Malabsorption
+Levothyroxine Sol,Thyroid Low,50-100mcg daily,Prescription needed,Palpitations,Thyroid Low
+Metformin Solution,Diabetes,500mg w/ meals,Prescription needed,GI upset,Diabetes
+Gliclazide Susp,Diabetes,40-80mg daily,Prescription needed,Hypoglycaemia,Diabetes
+Desmopressin Sol,Bedwetting,120-240mcg night,Prescription needed,Fluid retention,Bedwetting
+Colchicine Liquid,Gout,500mcg dosing,Prescription needed,none,Gout
+,,,,,
+**Note : This data is taken from open sources so always consult a qualified doctor.**,,,,,
