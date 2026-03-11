@@ -218,36 +218,33 @@ with tab1:
 # --- TAB 2: SEARCH BY SYMPTOM (Corrected logic) ---
 with tab2:
     st.header("Search by Symptom")
+
     symptom_input = st.text_input(
         "What symptom are you experiencing?",
         placeholder="e.g., Headache, Fever, Runny Nose",
         key="symptom_search"
     )
-    
-  if symptom_input:
 
-    with st.spinner("AI analyzing symptoms..."):
+    if symptom_input:
 
-        # Step 1: Predict symptom category
-        category = predict_symptom(symptom_input)
+        with st.spinner("AI analyzing symptoms..."):
+            category = predict_symptom(symptom_input)
 
-    st.info(f"🧠 AI detected category: **{category}**")
+        st.info(f"🧠 AI detected category: **{category}**")
 
-    with st.spinner(f"Searching medicines related to '{symptom_input}'..."):
+        with st.spinner(f"Searching medicines related to '{symptom_input}'..."):
 
-        # Step 2: Search medicines
-        medicine_list = lookup_by_symptom(symptom_input, medicine_df)
-            
-            if medicine_list:
-                st.success(f"✅ Found {len(medicine_list)} medicine(s) for '{symptom_input}':")
-                
-                # --- THIS IS THE MISSING PART ---
-                # This loop prints each medicine name
-                for med_name in medicine_list:
-                    st.markdown(f"- *{med_name}*")
-                
-            else:
-                st.info(f"❌ Could not find any medicines for '{symptom_input}'.")
+            medicine_list = lookup_by_symptom(symptom_input, medicine_df)
+
+        if medicine_list:
+
+            st.success(f"✅ Found {len(medicine_list)} medicine(s)")
+
+            for med_name in medicine_list:
+                st.markdown(f"- **{med_name}**")
+
+        else:
+            st.info(f"❌ Could not find medicines for '{symptom_input}'.")
               
 # --- TAB 3: AI ASSISTANT (Voice Integration) ---
 with tab3:
