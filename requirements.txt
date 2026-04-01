@@ -70,3 +70,6 @@ sqlalchemy
 google-generativeai
 transformers
 torch
+groq
+random
+requests
