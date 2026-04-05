@@ -968,7 +968,7 @@ with tab2:
 
             if emergency_override(st.session_state.user_symptom):
                 st.error("""
-🚨 **Emergency symptoms detected**
+return"🚨 **Emergency symptoms detected**"
 These symptoms may indicate a serious medical condition.
 Please seek **immediate medical attention** or contact emergency services.
 """)
