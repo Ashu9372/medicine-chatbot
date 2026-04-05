@@ -5,4 +5,3 @@ requests
 fuzzywuzzy
 python-Levenshtein
 groq
-google-generativeai
