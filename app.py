@@ -648,8 +648,7 @@ def generate_response(category, medicines, user_input):
 
     except Exception as e:
         return f"Error: {str(e)}"
-        return f"
-🧠 Based on your symptoms, this may be {category}.
+retorn f"🧠 Based on your symptoms, this may be {category}.
 
 💊 Consider: {", ".join(medicines)}
 
