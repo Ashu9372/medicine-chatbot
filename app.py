@@ -562,7 +562,7 @@ def render_chat_bubble(role, content):
     st.markdown(html, unsafe_allow_html=True)
 
 # Groq API key :
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+client = Groq(api_key=os.getenv["GROQ_API_KEY"])
 
 # Initialize session state
 if "messages" not in st.session_state:
@@ -640,15 +640,14 @@ def generate_response(category, medicines, user_input):
 
         chat = client.chat.completions.create(
             messages=messages,
-            model="llama-3.1-8b-instant",
+            model="llama3-8b-8192",
             max_tokens=150  # Limit length 
         )
 
-        return chat.choices[0].message.content.strip()
+        return chat_completion.choices[0].message.content.strip()
 
     except Exception as e:
-        st.error(f"❌ Groq Error: {e}")
-        return f"""
+        return f"Error: {str(e)}
 🧠 Based on your symptoms, this may be {category}.
 
 💊 Consider: {", ".join(medicines)}
