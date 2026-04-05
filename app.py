@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 from fuzzywuzzy import fuzz, process
 import google.generativeai as genai
-from streamlit_mic_recorder import mic_recorder, speech_to_text
+# from streamlit_mic_recorder import mic_recorder, speech_to_text
 import os
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
