@@ -5,3 +5,4 @@ requests
 fuzzywuzzy
 python-Levenshtein
 groq
+torch
