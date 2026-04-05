@@ -647,7 +647,7 @@ def generate_response(category, medicines, user_input):
         return chat_completion.choices[0].message.content.strip()
 
     except Exception as e:
-        return f"Error: {str(e)}
+        return f"Error: {str(e)}"
 🧠 Based on your symptoms, this may be {category}.
 
 💊 Consider: {", ".join(medicines)}
