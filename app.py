@@ -2,7 +2,7 @@ import streamlit as st
 # from openai import OpenAI
 import pandas as pd
 from fuzzywuzzy import fuzz, process
-import google.generativeai as genai
+# import google.generativeai as genai
 # from streamlit_mic_recorder import mic_recorder, speech_to_text
 import os
 import torch
