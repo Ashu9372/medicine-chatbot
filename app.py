@@ -1017,7 +1017,7 @@ with tab3:
             st.markdown("""
             <div style="display: flex; align-items: center; gap: 8px; margin: 12px 0; color: #64748b;">
                 <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); display: flex; align-items: center; justify-content: center;">
-                    🤖
+                    return"🤖"
                 </div>
                 <div>AI is typing...</div>
                 <div class="typing-dots">
