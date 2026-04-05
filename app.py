@@ -5,9 +5,9 @@ from fuzzywuzzy import fuzz, process
 # import google.generativeai as genai
 # from streamlit_mic_recorder import mic_recorder, speech_to_text
 import os
-import torch
+# import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch.nn.functional as F
+# import torch.nn.functional as F
 import time
 import random
 import sqlite3
