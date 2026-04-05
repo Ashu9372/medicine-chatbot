@@ -854,7 +854,7 @@ st.set_page_config(page_title="AI Health Assistant", page_icon="🧠", layout="w
 # Hero header
 st.markdown("""
 <div style="text-align: center; margin-bottom: 32px; margin-top: 24px;">
-    return f"<h1 style="font-size: 42px; margin-bottom: 8px;">🧠 AI Health Assistant</h1>"
+    f"<h1 style="font-size: 42px; margin-bottom: 8px;">🧠 AI Health Assistant</h1>"
     <p style="font-size: 16px; color: #94a3b8; margin: 0;">Your personal AI-powered health companion</p>
 </div>
 """, unsafe_allow_html=True)
