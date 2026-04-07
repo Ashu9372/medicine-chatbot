@@ -1014,17 +1014,17 @@ with tab3:
 
         # Show typing indicator
         with chat_container:
-            st.markdown("""
-            <div style="display: flex; align-items: center; gap: 8px; margin: 12px 0; color: #64748b;">
-                <div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); display: flex; align-items: center; justify-content: center;">
-                    return"🤖"
-                </div>
-                <div>AI is typing...</div>
-                <div class="typing-dots">
-                    <span></span><span></span><span></span>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+            '<div style="display: flex; align-items: center; gap: 8px; margin: 12px 0; color: #64748b;">'
+                '<div style="width: 24px; height: 24px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); display: flex; align-items: center; justify-content: center;">'
+                    'return🤖'
+                '</div>'
+                '<div>AI is typing...</div>'
+                '<div class="typing-dots">'
+                    '<span></span><span></span><span></span>'
+                '</div>'
+            '</div>'
+            unsafe_allow_html=True)
 
         # Check emergency condition
         danger_words = ["chest pain", "breathing", "unconscious", "severe", "blood"]
