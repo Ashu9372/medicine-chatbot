@@ -1098,13 +1098,13 @@ with tab3:
     with chat_container:
         if len(st.session_state.messages) == 0:
             # Empty state
-            st.markdown("""
-            <div style="text-align: center; padding: 60px 20px; color: #64748b;">
-                <div style="font-size: 48px; margin-bottom: 16px;">💬</div>
-                <div style="font-size: 18px; margin-bottom: 8px;">Start a conversation</div>
-                <div style="font-size: 14px;">Ask about symptoms or health concerns</div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                '<div style="text-align: center; padding: 60px 20px; color: #64748b;">'
+                '<div style="font-size: 48px; margin-bottom: 16px;">💬</div>'
+                '<div style="font-size: 18px; margin-bottom: 8px;">Start a conversation</div>'
+                '<div style="font-size: 14px;">Ask about symptoms or health concerns</div>'
+                '</div>'
+                unsafe_allow_html=True)
         else:
             # Display messages directly (Streamlit container handles scrolling)
             for msg in st.session_state.messages:
