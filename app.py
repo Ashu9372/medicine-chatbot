@@ -608,7 +608,7 @@ def generate_response(category, medicines, user_input):
             "content": (
             "You are a friendly and simple medical assistant.\n"
 
-            Rules:
+            "Rules:\n"
             "- Keep answers SHORT (2-4 lines max)\n"
             "- Use very simple language\n"
             "- Avoid long explanations\n"
@@ -623,7 +623,7 @@ def generate_response(category, medicines, user_input):
             "- Do not suggest specific medicines unless it's very common\n"
             "- Keep advice general and safe\n"
             
-            Style:
+            "Style:\n"
             "- Friendly\n"
             "- Calm\n"
             "- Straight to the point\n"
