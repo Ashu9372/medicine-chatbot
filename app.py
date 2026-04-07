@@ -655,7 +655,7 @@ def generate_response(category, medicines, user_input):
         f"🧠 Based on your symptoms, this may be {category}."
         f"💊 Consider: {", ".join(medicines)}"
         "Please consult a doctor for proper diagnosis."
-)
+      )
 
 # AI intent detection function
 def detect_intent(user_input):
