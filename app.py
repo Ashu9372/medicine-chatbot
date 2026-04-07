@@ -967,11 +967,11 @@ with tab2:
                     st.write(f"• {tip}")
 
             if emergency_override(st.session_state.user_symptom):
-                st.error("""
-return"🚨 **Emergency symptoms detected**"
-These symptoms may indicate a serious medical condition.
-Please seek **immediate medical attention** or contact emergency services.
-""")
+                st.error(
+"return🚨 **Emergency symptoms detected**\n"
+"These symptoms may indicate a serious medical condition.\n"
+"Please seek **immediate medical attention** or contact emergency services.\n"
+)
 
             st.divider()
 
