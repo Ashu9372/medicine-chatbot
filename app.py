@@ -651,11 +651,11 @@ def generate_response(category, medicines, user_input):
     except Exception as e:
         return f"Error: {str(e)}"
         
-      return ( 
-        f"🧠 Based on your symptoms, this may be {category}."
-        f"💊 Consider: {", ".join(medicines)}"
-        "Please consult a doctor for proper diagnosis."
-      )
+        return (
+            f"🧠 Based on your symptoms, this may be {category}."
+            f"💊 Consider: {", ".join(medicines)}"
+            "Please consult a doctor for proper diagnosis."
+        )
 
 # AI intent detection function
 def detect_intent(user_input):
