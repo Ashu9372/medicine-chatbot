@@ -1026,7 +1026,7 @@ with tab3:
                 '<div class="typing-dots">'
                     '<span></span><span></span><span></span>'
                 '</div>'
-            '</div>'
+            '</div>',
             unsafe_allow_html=True)
 
         # Check emergency condition
@@ -1126,6 +1126,6 @@ st.markdown(
     '<div class="footer-premium">'
     '<p style="margin: 0; font-size: 12px;">Build by Ashraf & shoaib ❤️ | AI Health Assistant v3.0</p>'
     '<p style="margin: 8px 0 0 0; font-size: 11px; color: #64748b;">© 2026 AI Health Assistant. Not a substitute for professional medical advice.</p>'
-    '</div>'
+    '</div>',
     unsafe_allow_html=True
 )
