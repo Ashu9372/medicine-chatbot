@@ -600,63 +600,29 @@ def detect_condition(user_input):
     return response.choices[0].message.content.strip()
 
 # AI generate response function
-def generate_response(category, medicines, user_input):
+def get_ai_response(user_input):
     try:
-        # Include recent chat history for context to avoid repetition
         messages = [
-            {"role": "system", 
-            "content": (
-            "You are a friendly and simple medical assistant.\n"
+            {"role": "system", "content": "You are a simple medical assistant. Keep answers short and helpful."}
+        ]
 
-            "Rules:\n"
-            "- Keep answers SHORT (2-4 lines max)\n"
-            "- Use very simple language\n"
-            "- Avoid long explanations\n"
-            "- Do NOT overload with bullet points unless necessary\n"
-            "- Speak like a normal human, not a doctor\n"
-            "- Give only the most useful advice\n"
-            "- If needed, ask 1 small follow-up question\n"
-            "- Make it engaging and friendly\n"
-            "- Dont panic the user, even if symptoms sound bad. Be calm and reassuring.\n"
-            "- only suggest hospital if symptoms sound like an emergency.\n"
-            "- otherwise give calm advice\n"
-            "- Do not suggest specific medicines unless it's very common\n"
-            "- Keep advice general and safe\n"
-            
-            "Style:\n"
-            "- Friendly\n"
-            "- Calm\n"
-            "- Straight to the point\n"
-            )
-          }
-         ]
-    
-        # Add last 3 messages for context
+        # add chat history
         for msg in st.session_state.messages[-3:]:
             messages.append(msg)
 
-        messages.append({
-            "role": "user",
-            "content": f"User symptoms: {user_input}\nDiagnosed condition: {category}\nRecommended medicines: {', '.join(medicines)}\n\nProvide a short response with:\n- Brief explanation (1-2 sentences)\n- Key advice in bullet points\n- Mention medicines if relevant\nKeep it human-like and relevant. Feel free to add emojis and make it engaging, but do NOT be repetitive or generic."
-        })
+        # add current user input
+        messages.append({"role": "user", "content": user_input})
 
-        chat = client.chat.completions.create(
-            messages=messages,
+        response = client.chat.completions.create(
             model="llama3-8b-8192",
-            max_tokens=150  # Limit length 
+            messages=messages
         )
 
-        return chat_completion.choices[0].message.content.strip()
+        return response.choices[0].message.content
 
     except Exception as e:
         return f"Error: {str(e)}"
         
-        return (
-            f"🧠 Based on your symptoms, this may be {category}."
-            f"💊 Consider: {", ".join(medicines)}"
-            "Please consult a doctor for proper diagnosis."
-        )
-
 # AI intent detection function
 def detect_intent(user_input):
     try:
@@ -1011,9 +977,18 @@ with tab3:
     user_input = st.chat_input("How are you feeling?", key="chat_input")
 
     # STEP 3: Process input
-    if user_input and user_input.strip():
-        # Append user message
-        st.session_state.messages.append({"role": "user", "content": user_input})
+      if user_input:
+         st.session_state.messages.append({
+           "role": "user",
+           "content": user_input
+        })
+
+    reply = get_ai_response(user_input)
+
+        st.session_state.messages.append({
+          "role": "assistant",
+          "content": reply
+       })
 
         # Show typing indicator
         with chat_container:
