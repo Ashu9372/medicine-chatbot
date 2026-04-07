@@ -1116,9 +1116,10 @@ with tab3:
     st.markdown('</div>', unsafe_allow_html=True)  # close section-card
 
 # Footer for professional look
-st.markdown("""
-<div class="footer-premium">
-    <p style="margin: 0; font-size: 12px;">Build by Ashraf & shoaib '❤️'  | AI Health Assistant v3.0</p>
-    <p style="margin: 8px 0 0 0; font-size: 11px; color: #64748b;">'©' 2026 AI Health Assistant. Not a substitute for professional medical advice.</p>
-</div>
-""",unsafe_allow_html=True)
+st.markdown(
+    '<div class="footer-premium">'
+    '<p style="margin: 0; font-size: 12px;">Build by Ashraf & shoaib ❤️ | AI Health Assistant v3.0</p>'
+    '<p style="margin: 8px 0 0 0; font-size: 11px; color: #64748b;">© 2026 AI Health Assistant. Not a substitute for professional medical advice.</p>'
+    '</div>'
+    unsafe_allow_html=True
+)
