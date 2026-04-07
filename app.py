@@ -985,7 +985,7 @@ with tab3:
 
     reply = get_ai_response(user_input)
 
-        st.session_state.messages.append({
+         st.session_state.messages.append({
           "role": "assistant",
           "content": reply
        })
