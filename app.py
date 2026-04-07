@@ -562,7 +562,7 @@ def render_chat_bubble(role, content):
     st.markdown(html, unsafe_allow_html=True)
 
 # Groq API key :
-client = Groq(api_key=os.getenv["GROQ_API_KEY"])
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # Initialize session state
 if "messages" not in st.session_state:
