@@ -655,7 +655,6 @@ retorn f"🧠 Based on your symptoms, this may be {category}."
 return f"💊 Consider: {", ".join(medicines)}"
 
 return f"⚠️ Please consult a doctor for proper diagnosis."
-"""
 
 # AI intent detection function
 def detect_intent(user_input):
