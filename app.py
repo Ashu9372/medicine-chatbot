@@ -977,7 +977,7 @@ with tab3:
     user_input = st.chat_input("How are you feeling?", key="chat_input")
 
     # STEP 3: Process input
-      if user_input:
+    if user_input:
          st.session_state.messages.append({
            "role": "user",
            "content": user_input
