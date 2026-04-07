@@ -1109,8 +1109,9 @@ with tab3:
                 '<div style="font-size: 48px; margin-bottom: 16px;">💬</div>'
                 '<div style="font-size: 18px; margin-bottom: 8px;">Start a conversation</div>'
                 '<div style="font-size: 14px;">Ask about symptoms or health concerns</div>'
-                '</div>'
-                unsafe_allow_html=True)
+                '</div>',
+                unsafe_allow_html=True
+                )
         else:
             # Display messages directly (Streamlit container handles scrolling)
             for msg in st.session_state.messages:
