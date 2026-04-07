@@ -604,31 +604,33 @@ def generate_response(category, medicines, user_input):
     try:
         # Include recent chat history for context to avoid repetition
         messages = [
-            {"role": "system", "content": """
-            You are a friendly and simple medical assistant.
+            {"role": "system", 
+            "content": (
+            "You are a friendly and simple medical assistant.\n"
 
             Rules:
-            - Keep answers SHORT (2-4 lines max)
-            - Use very simple language
-            - Avoid long explanations
-            - Do NOT overload with bullet points unless necessary
-            - Speak like a normal human, not a doctor
-            - Give only the most useful advice
-            - If needed, ask 1 small follow-up question
-            - Make it engaging and friendly
-            - Dont panic the user, even if symptoms sound bad. Be calm and reassuring.
-            - only suggest hospital if symptoms sound like an emergency.
-            - otherwise give calm advice 
-            - Do not suggest specific medicines unless it's very common
-            - Keep advice general and safe
+            "- Keep answers SHORT (2-4 lines max)\n"
+            "- Use very simple language\n"
+            "- Avoid long explanations\n"
+            "- Do NOT overload with bullet points unless necessary\n"
+            "- Speak like a normal human, not a doctor\n"
+            "- Give only the most useful advice\n"
+            "- If needed, ask 1 small follow-up question\n"
+            "- Make it engaging and friendly\n"
+            "- Dont panic the user, even if symptoms sound bad. Be calm and reassuring.\n"
+            "- only suggest hospital if symptoms sound like an emergency.\n"
+            "- otherwise give calm advice\n"
+            "- Do not suggest specific medicines unless it's very common\n"
+            "- Keep advice general and safe\n"
             
             Style:
-            - Friendly
-            - Calm
-            - Straight to the point
-            """}
-        ]
-
+            "- Friendly\n"
+            "- Calm\n"
+            "- Straight to the point\n"
+            )
+          }
+         ]
+    
         # Add last 3 messages for context
         for msg in st.session_state.messages[-3:]:
             messages.append(msg)
@@ -852,12 +854,12 @@ SYMPTOM_MAP = {
 st.set_page_config(page_title="AI Health Assistant", page_icon="🧠", layout="wide")
 
 # Hero header
-st.markdown("""
-<div style="text-align: center; margin-bottom: 32px; margin-top: 24px;">
+st.markdown(
+    '<div style="text-align: center; margin-bottom: 32px; margin-top: 24px;">'
     '<h1 style="font-size: 42px; margin-bottom: 8px;">🧠 AI Health Assistant</h1>'
-    <p style="font-size: 16px; color: #94a3b8; margin: 0;">Your personal AI-powered health companion</p>
-</div>
-""", unsafe_allow_html=True)
+    '<p style="font-size: 16px; color: #94a3b8; margin: 0;">Your personal AI-powered health companion</p>'
+    '</div>'
+    unsafe_allow_html=True)
 
 st.markdown('''<div class="card-container"><p style="margin: 0; color: #fca5a5;">⚠️ <strong>Disclaimer:</strong> Always consult a qualified doctor or pharmacist before using medicine. This tool is for general information only.</p></div>''', unsafe_allow_html=True)
 
