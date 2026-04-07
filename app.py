@@ -978,17 +978,17 @@ with tab3:
 
     # STEP 3: Process input
     if user_input:
-         st.session_state.messages.append({
-           "role": "user",
-           "content": user_input
+        st.session_state.messages.append({
+            "role": "user",
+            "content": user_input
         })
 
-    reply = get_ai_response(user_input)
+        reply = get_ai_response(user_input)
 
-         st.session_state.messages.append({
-          "role": "assistant",
-          "content": reply
-       })
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": reply
+        })
 
         # Show typing indicator
         with chat_container:
