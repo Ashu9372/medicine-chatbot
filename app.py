@@ -856,10 +856,11 @@ st.set_page_config(page_title="AI Health Assistant", page_icon="🧠", layout="w
 # Hero header
 st.markdown(
     '<div style="text-align: center; margin-bottom: 32px; margin-top: 24px;">'
-    '<h1 style="font-size: 42px; margin-bottom: 8px;">🧠 AI Health Assistant</h1>'
+    '<h1 style="font-size: 42px; margin-bottom: 8px;"> AI Health Assistant</h1>'
     '<p style="font-size: 16px; color: #94a3b8; margin: 0;">Your personal AI-powered health companion</p>'
-    '</div>'
-    unsafe_allow_html=True)
+    '</div>',
+    unsafe_allow_html=True
+    )
 
 st.markdown('''<div class="card-container"><p style="margin: 0; color: #fca5a5;">⚠️ <strong>Disclaimer:</strong> Always consult a qualified doctor or pharmacist before using medicine. This tool is for general information only.</p></div>''', unsafe_allow_html=True)
 
