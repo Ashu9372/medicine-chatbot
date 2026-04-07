@@ -1009,66 +1009,6 @@ with tab3:
         if any(word in user_input.lower() for word in danger_words):
             st.error("⚠️ This may be serious. Please seek immediate medical help.")
 
-        # Process input with AI intent detection
-        intent = detect_intent(user_input)
-
-        if intent in ["symptom", "emergency"]:
-            # Medical response
-            try:
-                category = detect_condition(user_input)
-                medicines = get_medicine_from_db(category)
-                if not medicines:
-                    medicines = ["Consult a doctor"]
-                response = generate_response(category, medicines, user_input)
-            except Exception as e:
-                response = "Sorry, I couldn't process that. Please try again."
-        else:
-            # Casual or general response
-            try:
-                messages = [
-                    {
-                        "role": "system",
-                        "content": (
-                    "You are a friendly and simple medical assistant.\n"
-                    "Rules:\n"
-                    "- Keep answers SHORT (1-4 lines max)\n"
-                    "- Use very simple language\n"
-                    "- Do not panic the user, even if symptoms sound bad. Be calm and reassuring.\n"
-                    "- If the message indicates a greeting, respond with a friendly greeting.\n"
-                    "- If the message indicates a thank you, respond with a polite acknowledgment.\n"
-                    "- Make it engaging and human-like.\n"
-                        )
-                    }
-                ]
-
-                # Add last 3 messages for context
-                for msg in st.session_state.messages[-3:]:
-                    messages.append(msg)
-
-                messages.append({
-                    "role": "user",
-                    "content": user_input
-                })
-
-                chat = client.chat.completions.create(
-                    messages=messages,
-                    model="llama-3.1-8b-instant",
-                    max_tokens=120
-                )
-
-                response = chat.choices[0].message.content.strip()
-
-            except Exception as e:
-                # Fallback responses
-                if intent == "greeting":
-                    response = "👋 Hi! How can I help you today?"
-                elif intent == "goodbye" or intent == "bye" or intent == "byy" or intent == "exit":
-                    response = "👍 Take care! Stay healthy."
-                elif intent == "casual":
-                    response = "That's interesting! If you have any health questions, feel free to ask."
-                else:
-                    response = "I'm here to help. What can I do for you?"
-
         # Append assistant message
         if response:
             st.session_state.messages.append({"role": "assistant", "content": response})
