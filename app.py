@@ -1010,10 +1010,11 @@ with tab3:
             st.error("⚠️ This may be serious. Please seek immediate medical help.")
 
         # Append assistant message
-        if response:
-            st.session_state.messages.append({"role": "assistant", "content": response})
-
-        st.rerun()
+        # if response:
+            # st.session_state.messages.append(
+            # {"role": "assistant", "content": response}
+            # )
+        # st.rerun()
 
     # STEP 4: Inside chat_container - display messages
     with chat_container:
